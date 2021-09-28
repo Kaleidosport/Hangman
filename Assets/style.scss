@@ -1,0 +1,23 @@
+
+
+/* General styling elements */
+body
+{
+    font-family: "Bangers", cursive;
+    background-size: cover;
+    background-position: center center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+}
+
+@media (min-width: 1145px) {
+    body {
+        background-image: url("./Pics/302-3022607_world-of-warcraft-druid-tree.jpg");
+    }
+}
+
+@media (max-width: 1144px) {
+    body {
+        background-image: url("./Pics/Ancient_of_Lore_\(art\).jpg");
+    }
+}
