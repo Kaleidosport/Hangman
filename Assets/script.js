@@ -14,3 +14,8 @@ for (let i = 0; i < wordPicker.length; i++) {
 }
 
 let remainingLetters = wordPicker.length // Monitoring how many letters are yet to be guessed
+
+// Game on!
+document.getElementById("play").addEventListener("click", () => {
+    document.getElementById("play").style.visibility = "hidden";
+})

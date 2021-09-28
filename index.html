@@ -18,7 +18,7 @@
     <!-- Additional font -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Bangers&display=swap" rel="stylesheet"> 
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">  
   </head>
 
   <body>
@@ -33,7 +33,11 @@
 
     <main>
     <!-- Hangman game -->
-      <section class="d-flex justify-content-center align-items-center vh-100">
+      <section class="d-flex justify-content-start align-items-center ms-3 float-md-start">
+        <!-- Float is essential to get the expected layout on medium-sized and bigger screens -->
+        <h2 class="text-dark">Find out location names from <span class="text-warning bg-dark px-1">World of Warcraft</span></h2>
+      </section>
+      <section class="d-flex justify-content-end align-items-center me-3">
         <button type="button" class="btn btn-warning btn-lg" id="play">
           <span class="fs-2">PLAY</span>
         </button>
