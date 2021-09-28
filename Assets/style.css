@@ -18,4 +18,14 @@ body {
     background-image: url("./Pics/Ancient_of_Lore_(art).jpg");
   }
 }
+
+/* Applying personal styles to components: buttons */
+.btn:focus, .btn-warning:focus, .btn-warning:active, .btn:active {
+  box-shadow: none;
+  -webkit-box-shadow: none;
+}
+
+.btn-warning:hover {
+  background-color: #ffa700;
+}
 /*# sourceMappingURL=style.css.map */
