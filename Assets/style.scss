@@ -42,3 +42,11 @@ body
     letter-spacing: .35rem;
     font-size: 3.5rem;
 }
+
+// Adding style to list items
+li {
+    list-style-type: none;
+    &:not(:last-child) {
+        margin-right: 3px;
+    }
+}

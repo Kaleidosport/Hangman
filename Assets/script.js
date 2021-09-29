@@ -25,7 +25,17 @@ document.getElementById("play").addEventListener("click", () => {
     let guessedLetters = []
     guessedLetters = wordPicker.split("").forEach(element => /[a-z]/i.test(element) ? 
     guessedLetters.push("_") : guessedLetters.push(element)) // Filling an array with guessed letters
-    /* Creating the game interface to be displayed */
+    //        ♣♣♣♣♣♣♣♣ Creating the game interface to be displayed ♣♣♣♣♣♣♣
     document.getElementById("game-interface").innerHTML = 
     `<p>Try to guess the following word</p> <span class="size-and-spacing">${lettersInWord.join(" ")}</span>` // Displaying word to find as underscores
+    // Creating a function that will display the alphabet as a bar
+    alphabetBar = () => {
+        bar = `<ul class="d-flex size-and-spacing">` // Said bar will appear in two lines, hence flex
+        for (element in ALPHABET) {
+            bar += `<li>${ALPHABET[element]}</li>`
+        }
+        bar += `</ul>`
+        document.getElementById("alphabet-bar").innerHTML = bar
+    }
+    alphabetBar()
 })

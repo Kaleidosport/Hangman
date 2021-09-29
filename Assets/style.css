@@ -38,4 +38,12 @@ body {
   letter-spacing: .35rem;
   font-size: 3.5rem;
 }
+
+li {
+  list-style-type: none;
+}
+
+li:not(:last-child) {
+  margin-right: 3px;
+}
 /*# sourceMappingURL=style.css.map */
