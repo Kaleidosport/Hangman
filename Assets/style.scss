@@ -1,4 +1,5 @@
 $lightdark: #21252970;
+$basesize: 3.5rem;
 
 /* General styling elements */
 body
@@ -39,11 +40,16 @@ body
 
 // Adding personalized letter spacing and font size dedicated to the word to guess */
 .size-and-spacing {
-    letter-spacing: .35rem;
-    font-size: 3.5rem;
+    letter-spacing: $basesize / 10; // .35rem
+    font-size: $basesize;
 }
 
-// Adding style to list items
+// Adding style to ul and list items
+ul {
+    max-width: $basesize * 8; // 28rem
+    // ??? margin-left: -40px; ???
+}
+
 li {
     list-style-type: none;
     &:not(:last-child) {

@@ -35,8 +35,12 @@ body {
 }
 
 .size-and-spacing {
-  letter-spacing: .35rem;
+  letter-spacing: 0.35rem;
   font-size: 3.5rem;
+}
+
+ul {
+  max-width: 28rem;
 }
 
 li {

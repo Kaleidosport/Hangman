@@ -27,15 +27,19 @@ document.getElementById("play").addEventListener("click", () => {
     guessedLetters.push("_") : guessedLetters.push(element)) // Filling an array with guessed letters
     //        ♣♣♣♣♣♣♣♣ Creating the game interface to be displayed ♣♣♣♣♣♣♣
     document.getElementById("game-interface").innerHTML = 
-    `<p>Try to guess the following word</p> <span class="size-and-spacing">${lettersInWord.join(" ")}</span>` // Displaying word to find as underscores
+    `<p>${remainingLetters} missing letters || ${remainingLetters - 2} attempts left</p> 
+    <span class="size-and-spacing">${lettersInWord.join(" ")}</span>` // Displaying word to find as underscores
     // Creating a function that will display the alphabet as a bar
     alphabetBar = () => {
-        bar = `<ul class="d-flex size-and-spacing">` // Said bar will appear in two lines, hence flex
+        bar = `<ul class="d-flex flex-wrap justify-content-center size-and-spacing">` // Said bar will appear in two lines, hence flex and flex-wrap
         for (element in ALPHABET) {
             bar += `<li>${ALPHABET[element]}</li>`
         }
         bar += `</ul>`
         document.getElementById("alphabet-bar").innerHTML = bar
+        document.getElementById("guesses-left").innerHTML = `<p>Missing letters: 
+        ${remainingLetters} || ${remainingLetters - 2} attempts left</p>`
     }
-    alphabetBar()
+    alphabetBar() // Unleashing the created function, alphabet bar becomes visible
+    Bla
 })
