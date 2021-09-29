@@ -25,30 +25,35 @@
     
     <header>
     <!-- Title & branding -->
-      <h1 class="container-fluid text-center bg-dark text-warning fs-3">
+      <h1 class="container-fluid text-center bg-dark text-warning fs-2">
         HANGMAN, WORLD OF WARCRAFT EDITION
       </h1>
-
     </header>
 
+    <!-- Main section dedicated to the actual game -->
     <main>
-    <!-- Hangman game -->
+      <!-- Hangman game(1): short descriptive section + call to action -->
       <section class="d-flex justify-content-start align-items-center ms-3 float-md-start">
         <!-- Float is essential to get the expected layout on medium-sized and bigger screens -->
         <h2 class="text-dark">Find out location names from <span class="text-warning bg-dark px-1">World of Warcraft</span></h2>
       </section>
       <section class="d-flex justify-content-end align-items-center me-3">
+        <!-- A button to start the game -->
         <button type="button" class="btn btn-warning btn-lg" id="play">
           <span class="fs-2">PLAY</span>
         </button>
       </section>
+      <!-- End of the descriptive section -->
+
+      <!-- Hangman game(2): core playing section -->
+      <section class="game d-flex flex-column justify-content-center align-items-center my-4">
+        <canvas id="canvas"></canvas>
+        <div class="text-warning fs-1 text-center bg-light-dark px-2" id="game-interface"></div>
+        <div id="guesses-left"></div>
+      </section>
+      <!-- End of the core playing section -->
         
     </main>
-
-    <footer>
-      <!-- Lower bar for external links and corporate stuff -->
-
-    </footer>
 
   </body>
 

@@ -1,4 +1,4 @@
-
+$lightdark: #21252970;
 
 /* General styling elements */
 body
@@ -30,4 +30,15 @@ body
   
 .btn-warning:hover {
     background-color: #ffa700;
+}
+
+/* Adding a personalized background color */
+.bg-light-dark {
+    background-color: $lightdark;
+}
+
+// Adding personalized letter spacing and font size dedicated to the word to guess */
+.size-and-spacing {
+    letter-spacing: .35rem;
+    font-size: 3.5rem;
 }
