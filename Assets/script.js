@@ -32,7 +32,7 @@ document.getElementById("play").addEventListener("click", () => {
     alphabetBar = () => {
         bar = `<ul class="d-flex flex-wrap justify-content-center size-and-spacing">` // Said bar will appear in two lines, hence flex and flex-wrap
         for (element in ALPHABET) {
-            bar += `<li>${ALPHABET[element]}</li>`
+            bar += `<li>${ALPHABET[element]}</li>` // A corresponding list item for each letter; could have used forEach
         }
         bar += `</ul>`
         document.getElementById("alphabet-bar").innerHTML = bar
@@ -47,12 +47,12 @@ document.getElementById("play").addEventListener("click", () => {
                 if (wordPicker.includes(document.getElementsByTagName("li")[i].innerText)) {
                     document.getElementsByTagName("li")[i].classList.add("text-success")
                     let letterSuccess = document.getElementsByTagName("li")[i].innerText
-                    let indices = []
+                    let indices = [] // Creating an array that will contain and help identify redundant letters'indices
                     for (let j = 0; j < wordPicker.length; j++) {
                         if (wordPicker[j] === letterSuccess) indices.push(j)
                     }
                     for (let k = 0; k < indices.length ; k++) {
-                        lettersInWord.splice(indices[k], 1, letterSuccess)
+                        lettersInWord.splice(indices[k], 1, letterSuccess) // Identified indicies performing indexOf and lastIndexOf's job
                     }
                     remainingLetters -= indices.length // One step closer to winning, couldn't use remainingLetters-- since some letters appear more than once
                     document.getElementById("game-interface").innerHTML = 
@@ -68,18 +68,20 @@ document.getElementById("play").addEventListener("click", () => {
                 }
             }
             if (remainingAttempts === 0) {
-                document.getElementById("play").style.visibility = "visible"
-                document.getElementById("alphabet-bar").style.visibility = "hidden"
+                document.getElementById("play").style.visibility = "visible" // Top button comes back(1)
+                document.getElementById("alphabet-bar").style.visibility = "hidden" // Alphabet bar goes in hiding(2)
                 document.getElementById("game-interface").innerHTML = `<p class="fs-1">GAME OVER! THE EXPECTED WORD WAS</p>
                 <span class="size-and-spacing">${wordPicker}</span>
-                <button type="button" class="btn btn-warning btn-lg" id="play-again"><span class="fs-2">PLAY AGAIN</span></button>`
+                <button type="button" class="btn btn-warning btn-lg"><span class="fs-2">PLAY AGAIN</span></button>`
+                // Could have gotten the same result with createElement() and appendChild()(3)
             }
             else if (remainingLetters === 0) {
-                document.getElementById("play").style.visibility = "visible"
-                document.getElementById("alphabet-bar").style.visibility = "hidden"
+                document.getElementById("play").style.visibility = "visible" // Ibid(1)
+                document.getElementById("alphabet-bar").style.visibility = "hidden" // Ibid(2)
                 document.getElementById("game-interface").innerHTML = `<p class ="fs-1">CONGRATS! YOU FOUND THE WORD</p>
                 <span class="size-and-spacing">${wordPicker}</span>
-                <button type="button" class="btn btn-warning btn-lg" id="play-again"><span class="fs-2">PLAY AGAIN</span></button>`
+                <button type="button" class="btn btn-warning btn-lg"><span class="fs-2">PLAY AGAIN</span></button>`
+                // Ibid(3)
             }
         })
     }
