@@ -69,12 +69,17 @@ document.getElementById("play").addEventListener("click", () => {
             }
             if (remainingAttempts === 0) {
                 document.getElementById("play").style.visibility = "visible"
-                document.getElementById("game-interface").innerHTML = `<p class="fs-1">GAME OVER</p>`
+                document.getElementById("alphabet-bar").style.visibility = "hidden"
+                document.getElementById("game-interface").innerHTML = `<p class="fs-1">GAME OVER! THE EXPECTED WORD WAS</p>
+                <span class="size-and-spacing">${wordPicker}</span>
+                <button type="button" class="btn btn-warning btn-lg" id="play-again"><span class="fs-2">PLAY AGAIN</span></button>`
             }
             else if (remainingLetters === 0) {
                 document.getElementById("play").style.visibility = "visible"
+                document.getElementById("alphabet-bar").style.visibility = "hidden"
                 document.getElementById("game-interface").innerHTML = `<p class ="fs-1">CONGRATS! YOU FOUND THE WORD</p>
-                <span class="size-and-spacing">${wordPicker}</span>`
+                <span class="size-and-spacing">${wordPicker}</span>
+                <button type="button" class="btn btn-warning btn-lg" id="play-again"><span class="fs-2">PLAY AGAIN</span></button>`
             }
         })
     }
