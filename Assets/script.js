@@ -23,9 +23,7 @@ let remainingAttempts = 5
 // Game on!
 document.getElementById("play").addEventListener("click", () => {
     document.getElementById("play").style.visibility = "hidden"; // Hiding PLAY button once clicked
-    let guessedLetters = []
-    guessedLetters = wordPicker.split("").forEach(element => /[a-z]/i.test(element) ? 
-    guessedLetters.push("_") : guessedLetters.push(element)) // Filling an array with guessed letters
+
     //        ♣♣♣♣♣♣♣♣ Creating the game interface to be displayed ♣♣♣♣♣♣♣
     document.getElementById("game-interface").innerHTML = 
     `<p>${remainingLetters} missing letters || ${remainingAttempts} attempts left</p> 
@@ -41,39 +39,55 @@ document.getElementById("play").addEventListener("click", () => {
     }
     alphabetBar() // Unleashing the created function, alphabet bar becomes visible
 
+    // On to the game features(1): interaction with the alphabet bar + success and failure actions through added classes
     for (let i = 0; i < document.getElementsByTagName("li").length; i++) {
         document.getElementsByTagName("li")[i].addEventListener("click", () => {
             if (!document.getElementsByTagName("li")[i].classList.contains("attempted")) {
                 document.getElementsByTagName("li")[i].classList.add("attempted")
                 if (wordPicker.includes(document.getElementsByTagName("li")[i].innerText)) {
                     document.getElementsByTagName("li")[i].classList.add("text-success")
-                    remainingLetters--
+                    let letterSuccess = document.getElementsByTagName("li")[i].innerText
+                    let indices = []
+                    for (let j = 0; j < wordPicker.length; j++) {
+                        if (wordPicker[j] === letterSuccess) indices.push(j)
+                    }
+                    for (let k = 0; k < indices.length ; k++) {
+                        lettersInWord.splice(indices[k], 1, letterSuccess)
+                    }
+                    remainingLetters -= indices.length // One step closer to winning, couldn't use remainingLetters-- since some letters appear more than once
                     document.getElementById("game-interface").innerHTML = 
                     `<p>${remainingLetters} missing letters || ${remainingAttempts} attempts left</p> 
                     <span class="size-and-spacing">${lettersInWord.join(" ")}</span>`
                 }
                 else {
                     document.getElementsByTagName("li")[i].classList.add("text-danger")
-                    remainingAttempts--
+                    remainingAttempts-- // One step closer to losing
                     document.getElementById("game-interface").innerHTML = 
                     `<p>${remainingLetters} missing letters || ${remainingAttempts} attempts left</p> 
                     <span class="size-and-spacing">${lettersInWord.join(" ")}</span>`
                 }
             }
+            if (remainingAttempts === 0) {
+                document.getElementById("play").style.visibility = "visible"
+                document.getElementById("game-interface").innerHTML = `<p class="fs-1">GAME OVER</p>`
+            }
+            else if (remainingLetters === 0) {
+                document.getElementById("play").style.visibility = "visible"
+                document.getElementById("game-interface").innerHTML = `<p class ="fs-1">CONGRATS! YOU FOUND THE WORD</p>
+                <span class="size-and-spacing">${wordPicker}</span>`
+            }
         })
     }
-    
-    // document.getElementsByTagName("li").addEventListener("click", () => {
-    //     if (document.getElementsByTagName("li")[i].classList.contains("attempted")) {
-    //         document.getElementsByTagName("li")[i].setAttribute("class", "attempted") // e.target.classList.add("attempted") ?
-    //         for (let i = 0; i < wordPicker.length; i++) { // element of/in?
-    //             if (wordPicker[i] == document.getElementsByTagName("li")[i].innerText) {
-    //                 remainingLetters--
-    //                 lettersInWord[i].replace("_", wordPicker[i])
-    //             }
-    //         }
-    //     }
-    // })
 })
 
 // This was key: document.getElementsByTagName("li")[3].classList.add ==> THIS ONE WORKS in console inspector
+// This too: wordPicker.indexOf(document.getElementsByTagName("li")[3].innerText)
+
+/* This one seemed cool but only worked up to two iterations of a letter inside the word to find:
+    let index = wordPicker.indexOf(document.getElementsByTagName("li")[i].innerText)
+    let letterSuccess = document.getElementsByTagName("li")[i].innerText
+    if (index > -1) {
+        lettersInWord.splice(index, 1, letterSuccess)
+        lettersInWord.splice(wordPicker.lastIndexOf(letterSuccess), 1, letterSuccess)
+    }
+*/
