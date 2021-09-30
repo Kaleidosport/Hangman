@@ -18,6 +18,7 @@ for (let i = 0; i < wordPicker.length; i++) {
 }
 
 let remainingLetters = wordPicker.length // Monitoring how many letters are yet to be guessed
+let remainingAttempts = 5
 
 // Game on!
 document.getElementById("play").addEventListener("click", () => {
@@ -27,7 +28,7 @@ document.getElementById("play").addEventListener("click", () => {
     guessedLetters.push("_") : guessedLetters.push(element)) // Filling an array with guessed letters
     //        ♣♣♣♣♣♣♣♣ Creating the game interface to be displayed ♣♣♣♣♣♣♣
     document.getElementById("game-interface").innerHTML = 
-    `<p>${remainingLetters} missing letters || ${remainingLetters - 2} attempts left</p> 
+    `<p>${remainingLetters} missing letters || ${remainingAttempts} attempts left</p> 
     <span class="size-and-spacing">${lettersInWord.join(" ")}</span>` // Displaying word to find as underscores
     // Creating a function that will display the alphabet as a bar
     alphabetBar = () => {
@@ -46,9 +47,17 @@ document.getElementById("play").addEventListener("click", () => {
                 document.getElementsByTagName("li")[i].classList.add("attempted")
                 if (wordPicker.includes(document.getElementsByTagName("li")[i].innerText)) {
                     document.getElementsByTagName("li")[i].classList.add("text-success")
+                    remainingLetters--
+                    document.getElementById("game-interface").innerHTML = 
+                    `<p>${remainingLetters} missing letters || ${remainingAttempts} attempts left</p> 
+                    <span class="size-and-spacing">${lettersInWord.join(" ")}</span>`
                 }
                 else {
                     document.getElementsByTagName("li")[i].classList.add("text-danger")
+                    remainingAttempts--
+                    document.getElementById("game-interface").innerHTML = 
+                    `<p>${remainingLetters} missing letters || ${remainingAttempts} attempts left</p> 
+                    <span class="size-and-spacing">${lettersInWord.join(" ")}</span>`
                 }
             }
         })
