@@ -4,7 +4,7 @@
 **Context:** Solo challenge pertaining to the Junior WebDev's training provided by [BeCode](https://github.com/becodeorg). The goal here is to assess my understanding of Javascript's perks.  
 **End product:** [Hangman, World of Warcraft Edition](https://github.io/Kaleidosport/Hangman).  
 **Start date:** September 27th 2021. 
-**End date:** September 30rd 2021.
+**End date:** September 30th 2021.
   
 ## Learning objectives  
 
