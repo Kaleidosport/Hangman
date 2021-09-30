@@ -44,11 +44,11 @@ document.getElementById("play").addEventListener("click", () => {
         document.getElementsByTagName("li")[i].addEventListener("click", () => {
             if (!document.getElementsByTagName("li")[i].classList.contains("attempted")) {
                 document.getElementsByTagName("li")[i].classList.add("attempted")
-                for (j = 0; j < wordPicker.length; j++) {
-                    if (wordPicker[j] === document.getElementsByTagName("li")[j].innerText) {
-                        remainingLetters--
-                        lettersInWord[j].replace("_", wordPicker[j])
-                    }
+                if (wordPicker.includes(document.getElementsByTagName("li")[i].innerText)) {
+                    document.getElementsByTagName("li")[i].classList.add("text-success")
+                }
+                else {
+                    document.getElementsByTagName("li")[i].classList.add("text-danger")
                 }
             }
         })
