@@ -45,6 +45,7 @@ ul {
 
 li {
   list-style-type: none;
+  cursor: pointer;
 }
 
 li:not(:last-child) {

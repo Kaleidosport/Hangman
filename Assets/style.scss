@@ -52,6 +52,7 @@ ul {
 
 li {
     list-style-type: none;
+    cursor: pointer;
     &:not(:last-child) {
         margin-right: 3px;
     }

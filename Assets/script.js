@@ -37,9 +37,34 @@ document.getElementById("play").addEventListener("click", () => {
         }
         bar += `</ul>`
         document.getElementById("alphabet-bar").innerHTML = bar
-        document.getElementById("guesses-left").innerHTML = `<p>Missing letters: 
-        ${remainingLetters} || ${remainingLetters - 2} attempts left</p>`
     }
     alphabetBar() // Unleashing the created function, alphabet bar becomes visible
-    Bla
+
+    for (let i = 0; i < document.getElementsByTagName("li").length; i++) {
+        document.getElementsByTagName("li")[i].addEventListener("click", () => {
+            if (!document.getElementsByTagName("li")[i].classList.contains("attempted")) {
+                document.getElementsByTagName("li")[i].classList.add("attempted")
+                for (j = 0; j < wordPicker.length; j++) {
+                    if (wordPicker[j] === document.getElementsByTagName("li")[j].innerText) {
+                        remainingLetters--
+                        lettersInWord[j].replace("_", wordPicker[j])
+                    }
+                }
+            }
+        })
+    }
+    
+    // document.getElementsByTagName("li").addEventListener("click", () => {
+    //     if (document.getElementsByTagName("li")[i].classList.contains("attempted")) {
+    //         document.getElementsByTagName("li")[i].setAttribute("class", "attempted") // e.target.classList.add("attempted") ?
+    //         for (let i = 0; i < wordPicker.length; i++) { // element of/in?
+    //             if (wordPicker[i] == document.getElementsByTagName("li")[i].innerText) {
+    //                 remainingLetters--
+    //                 lettersInWord[i].replace("_", wordPicker[i])
+    //             }
+    //         }
+    //     }
+    // })
 })
+
+// This was key: document.getElementsByTagName("li")[3].classList.add ==> THIS ONE WORKS in console inspector
