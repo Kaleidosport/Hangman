@@ -18,16 +18,17 @@ for (let i = 0; i < wordPicker.length; i++) {
 }
 
 let remainingLetters = wordPicker.length // Monitoring how many letters are yet to be guessed
-let remainingAttempts = 5
+let remainingAttempts = 5 // Giving the user 5 failing opportunities prior to 
 
 // Game on!
 document.getElementById("play").addEventListener("click", () => {
-    document.getElementById("play").style.visibility = "hidden"; // Hiding PLAY button once clicked
+    document.getElementById("play").style.visibility = "hidden" // Hiding PLAY button once clicked
 
     //        ♣♣♣♣♣♣♣♣ Creating the game interface to be displayed ♣♣♣♣♣♣♣
     document.getElementById("game-interface").innerHTML = 
     `<p>${remainingLetters} missing letters || ${remainingAttempts} attempts left</p> 
     <span class="size-and-spacing">${lettersInWord.join(" ")}</span>` // Displaying word to find as underscores
+
     // Creating a function that will display the alphabet as a bar
     alphabetBar = () => {
         bar = `<ul class="d-flex flex-wrap justify-content-center size-and-spacing">` // Said bar will appear in two lines, hence flex and flex-wrap
@@ -44,21 +45,25 @@ document.getElementById("play").addEventListener("click", () => {
         document.getElementsByTagName("li")[i].addEventListener("click", () => {
             if (!document.getElementsByTagName("li")[i].classList.contains("attempted")) {
                 document.getElementsByTagName("li")[i].classList.add("attempted")
+
                 if (wordPicker.includes(document.getElementsByTagName("li")[i].innerText)) {
                     document.getElementsByTagName("li")[i].classList.add("text-success")
                     let letterSuccess = document.getElementsByTagName("li")[i].innerText
                     let indices = [] // Creating an array that will contain and help identify redundant letters'indices
+
                     for (let j = 0; j < wordPicker.length; j++) {
                         if (wordPicker[j] === letterSuccess) indices.push(j)
                     }
                     for (let k = 0; k < indices.length ; k++) {
-                        lettersInWord.splice(indices[k], 1, letterSuccess) // Identified indicies performing indexOf and lastIndexOf's job
+                        lettersInWord.splice(indices[k], 1, letterSuccess) // Identified indices performing indexOf and lastIndexOf's job
                     }
+
                     remainingLetters -= indices.length // One step closer to winning, couldn't use remainingLetters-- since some letters appear more than once
                     document.getElementById("game-interface").innerHTML = 
                     `<p>${remainingLetters} missing letters || ${remainingAttempts} attempts left</p> 
                     <span class="size-and-spacing">${lettersInWord.join(" ")}</span>`
                 }
+
                 else {
                     document.getElementsByTagName("li")[i].classList.add("text-danger")
                     remainingAttempts-- // One step closer to losing
@@ -72,29 +77,38 @@ document.getElementById("play").addEventListener("click", () => {
                 document.getElementById("alphabet-bar").style.visibility = "hidden" // Alphabet bar goes in hiding(2)
                 document.getElementById("game-interface").innerHTML = `<p class="fs-1">GAME OVER! THE EXPECTED WORD WAS</p>
                 <span class="size-and-spacing">${wordPicker}</span>
-                <button type="button" class="btn btn-warning btn-lg"><span class="fs-2">PLAY AGAIN</span></button>`
+                <button type="button" class="btn btn-warning btn-lg play-again"><span class="fs-2">PLAY AGAIN</span></button>`
                 // Could have gotten the same result with createElement() and appendChild()(3)
+                document.querySelector(".play-again").addEventListener("click", () => {
+                    location.reload()
+                })
             }
             else if (remainingLetters === 0) {
                 document.getElementById("play").style.visibility = "visible" // Ibid(1)
                 document.getElementById("alphabet-bar").style.visibility = "hidden" // Ibid(2)
                 document.getElementById("game-interface").innerHTML = `<p class ="fs-1">CONGRATS! YOU FOUND THE WORD</p>
                 <span class="size-and-spacing">${wordPicker}</span>
-                <button type="button" class="btn btn-warning btn-lg"><span class="fs-2">PLAY AGAIN</span></button>`
+                <button type="button" class="btn btn-warning btn-lg play-again"><span class="fs-2">PLAY AGAIN</span></button>`
                 // Ibid(3)
+                document.querySelector(".play-again").addEventListener("click", () => {
+                    location.reload()
+                })
             }
         })
     }
 })
 
 // This was key: document.getElementsByTagName("li")[3].classList.add ==> THIS ONE WORKS in console inspector
-// This too: wordPicker.indexOf(document.getElementsByTagName("li")[3].innerText)
+// This too: wordPicker.indexOf(document.getElementsByTagName("li")[3].innerText) => Thanks to trials and errors in the console
 
-/* This one seemed cool but only worked up to two iterations of a letter inside the word to find:
+/* [51-64] This one seemed cool but only worked up to two iterations of a letter inside the word to find:
     let index = wordPicker.indexOf(document.getElementsByTagName("li")[i].innerText)
     let letterSuccess = document.getElementsByTagName("li")[i].innerText
     if (index > -1) {
         lettersInWord.splice(index, 1, letterSuccess)
         lettersInWord.splice(wordPicker.lastIndexOf(letterSuccess), 1, letterSuccess)
     }
+
+    In the same way, I liked it when I used .replace("_", "[any letter here]") at first...
+    but it wasn't meant to be. Gotta keep all of that in mind.
 */
