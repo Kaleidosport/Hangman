@@ -22,9 +22,6 @@ body
     body {
         background-image: url("./Pics/Ancient_of_Lore_\(art\).jpg");
     }
-    h2 {
-        max-width: 100%;
-    }
 }
 
 /* Applying personal styles to components: buttons */
@@ -65,4 +62,9 @@ li {
         transform: scale(1.26);
         transition: .2s;
     }
+}
+
+// Making H2 more responsive
+h2 {
+    font-size: $basesize * .46;
 }

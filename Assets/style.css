@@ -17,9 +17,6 @@ body {
   body {
     background-image: url("./Pics/Ancient_of_Lore_(art).jpg");
   }
-  h2 {
-    max-width: 100%;
-  }
 }
 
 /* Applying personal styles to components: buttons */
@@ -61,5 +58,9 @@ li:hover {
           transform: scale(1.26);
   -webkit-transition: .2s;
   transition: .2s;
+}
+
+h2 {
+  font-size: 1.61rem;
 }
 /*# sourceMappingURL=style.css.map */
