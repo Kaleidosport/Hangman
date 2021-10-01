@@ -51,4 +51,12 @@ li {
 li:not(:last-child) {
   margin-right: 3px;
 }
+
+li:hover {
+  color: #ffa700;
+  -webkit-transform: scale(1.26);
+          transform: scale(1.26);
+  -webkit-transition: .2s;
+  transition: .2s;
+}
 /*# sourceMappingURL=style.css.map */
