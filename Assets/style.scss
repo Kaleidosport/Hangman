@@ -1,5 +1,6 @@
 $lightdark: #21252970;
 $darkwarning: #ffa700;
+$lightwarning: #f5cb7e83;
 $basesize: 3.5rem;
 
 /* General styling elements */
@@ -75,4 +76,9 @@ h2 {
     h2 {
         font-size: $basesize * .35;
     }
+}
+
+// Enhancing canvas visibility
+.canvas-bg {
+    background-color: $lightwarning;
 }

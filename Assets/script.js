@@ -20,6 +20,10 @@ for (let i = 0; i < wordPicker.length; i++) {
 let remainingLetters = wordPicker.length // Monitoring how many letters are yet to be guessed
 let remainingAttempts = 5 // Giving the user 5 failing opportunities prior to 
 
+// Fifth step: getting canvas-related variables ready
+const CANVAS = document.getElementById("canvas")
+const CONTEXT = CANVAS.getContext("2d")    
+
 // Game on!
 document.getElementById("play").addEventListener("click", () => {
     document.getElementById("play").style.visibility = "hidden" // Hiding PLAY button once clicked
@@ -28,6 +32,8 @@ document.getElementById("play").addEventListener("click", () => {
     document.getElementById("game-interface").innerHTML = 
     `<p>${remainingLetters} missing letters || ${remainingAttempts} attempts left</p> 
     <span class="size-and-spacing">${lettersInWord.join(" ")}</span>` // Displaying word to find as underscores
+
+    document.getElementById("canvas").classList.add("canvas-bg") // Adding this class will add a transparent background to the canvas area
 
     // Creating a function that will display the alphabet as a bar
     alphabetBar = () => {
@@ -70,6 +76,7 @@ document.getElementById("play").addEventListener("click", () => {
                     document.getElementById("game-interface").innerHTML = 
                     `<p>${remainingLetters} missing letters || ${remainingAttempts} attempts left</p> 
                     <span class="size-and-spacing">${lettersInWord.join(" ")}</span>`
+                    drawGallows(remainingAttempts)
                 }
             }
             if (remainingAttempts === 0) {
@@ -95,6 +102,49 @@ document.getElementById("play").addEventListener("click", () => {
         })
     }
 })
+
+// Creating a function dedicated to drawing the hanged man
+function draw(toX, toY, lineX, lineY, round = false) {
+    // Setting line stroke and line width
+    CONTEXT.strokestyle = "white"
+    CONTEXT.linewidth = 55
+    CONTEXT.beginPath()
+
+    if (round) {
+        CONTEXT.arc(toX, toY, lineX, lineY, 2 * Math.PI) // To draw the hanged man's head
+    }
+    else {
+        CONTEXT.moveTo(toX, toY)
+        CONTEXT.lineTo(lineX, lineY) // Both of those to draw the gallows
+    }
+
+    CONTEXT.stroke()
+}
+
+// Creating a second function using switch method to draw after each failed attempt
+function drawGallows(remainingAttempts) {
+    switch(remainingAttempts) {
+        case 4:
+            draw(40, 145, 40, 5)
+            break
+        case 3:
+            draw(40, 5, 245, 5)
+            break
+        case 2:
+            draw(245, 5, 245, 30)
+            break
+        case 1:
+            draw(220, 30, 270, 30)
+            break
+        case 0:
+            draw(245, 40, 10, 0, true)
+            draw(245, 50, 245, 100)
+            draw(235, 75, 255, 75)
+            draw(245, 100, 235, 115)
+            draw(245, 100, 255, 115)
+            break
+    }
+}
 
 // This was key: document.getElementsByTagName("li")[3].classList.add ==> THIS ONE WORKS in console inspector
 // This too: wordPicker.indexOf(document.getElementsByTagName("li")[3].innerText) => Thanks to trials and errors in the console
