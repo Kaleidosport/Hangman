@@ -107,7 +107,7 @@ document.getElementById("play").addEventListener("click", () => {
 function draw(toX, toY, lineX, lineY, round = false) {
     // Setting line stroke and line width
     CONTEXT.strokestyle = "white"
-    CONTEXT.linewidth = 55
+    CONTEXT.linewidth = 5
     CONTEXT.beginPath()
 
     if (round) {
