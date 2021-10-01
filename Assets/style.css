@@ -5,6 +5,7 @@ body {
   background-position: center center;
   background-attachment: fixed;
   background-repeat: no-repeat;
+  line-height: normal;
 }
 
 @media (min-width: 1145px) {
@@ -62,11 +63,12 @@ li:hover {
 
 h2 {
   font-size: 1.61rem;
+  line-height: normal;
 }
 
 @media (max-width: 490px) {
   h2 {
-    font-size: 1.4rem;
+    font-size: 1.225rem;
   }
 }
 /*# sourceMappingURL=style.css.map */
