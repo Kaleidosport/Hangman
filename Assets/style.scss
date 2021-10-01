@@ -68,3 +68,9 @@ li {
 h2 {
     font-size: $basesize * .46;
 }
+
+@media (max-width : 490px) {
+    h2 {
+        font-size: $basesize * .4;
+    }
+}
