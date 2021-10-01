@@ -17,6 +17,9 @@ body {
   body {
     background-image: url("./Pics/Ancient_of_Lore_(art).jpg");
   }
+  h2 {
+    max-width: 100%;
+  }
 }
 
 /* Applying personal styles to components: buttons */

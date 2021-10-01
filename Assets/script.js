@@ -73,23 +73,21 @@ document.getElementById("play").addEventListener("click", () => {
                 }
             }
             if (remainingAttempts === 0) {
-                document.getElementById("play").style.visibility = "visible" // Top button comes back(1)
-                document.getElementById("alphabet-bar").style.visibility = "hidden" // Alphabet bar goes in hiding(2)
+                document.getElementById("alphabet-bar").style.visibility = "hidden" // Alphabet bar goes in hiding(1)
                 document.getElementById("game-interface").innerHTML = `<p class="fs-1">GAME OVER! THE EXPECTED WORD WAS</p>
                 <span class="size-and-spacing">${wordPicker}</span>
                 <button type="button" class="btn btn-warning btn-lg play-again"><span class="fs-2">PLAY AGAIN</span></button>`
-                // Could have gotten the same result with createElement() and appendChild()(3)
+                // Could have gotten the same result with createElement() and appendChild()(2)
                 document.querySelector(".play-again").addEventListener("click", () => {
                     location.reload()
                 })
             }
             else if (remainingLetters === 0) {
-                document.getElementById("play").style.visibility = "visible" // Ibid(1)
-                document.getElementById("alphabet-bar").style.visibility = "hidden" // Ibid(2)
+                document.getElementById("alphabet-bar").style.visibility = "hidden" // Ibid(1)
                 document.getElementById("game-interface").innerHTML = `<p class ="fs-1">CONGRATS! YOU FOUND THE WORD</p>
                 <span class="size-and-spacing">${wordPicker}</span>
                 <button type="button" class="btn btn-warning btn-lg play-again"><span class="fs-2">PLAY AGAIN</span></button>`
-                // Ibid(3)
+                // Ibid(2)
                 document.querySelector(".play-again").addEventListener("click", () => {
                     location.reload()
                 })
